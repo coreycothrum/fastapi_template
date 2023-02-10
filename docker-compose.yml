@@ -8,6 +8,32 @@ services:
       UVICORN_PORT: ${UVICORN_PORT}
     expose:
     - ${UVICORN_PORT}
-    ports:
-    - ${UVICORN_PORT}:${UVICORN_PORT}
     restart: always
+  certbot:
+    image: coreycothrum/certbot:v0.1.0
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      DOMAIN_EMAIL: ${DOMAIN_EMAIL}
+    restart: always
+    volumes:
+    - CERTBOT_CERTS:/etc/letsencrypt:rw
+    - CERTBOT_WEBROOT:/var/www/certbot:rw
+  nginx:
+    image: coreycothrum/nginx:v0.1.0
+    depends_on:
+    - certbot
+    - fastapi
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      PROXY_SERVER: fastapi:${UVICORN_PORT}
+    ports:
+    - 80:80
+    - 443:443
+    restart: always
+    volumes:
+    - CERTBOT_CERTS:/etc/letsencrypt:ro
+    - CERTBOT_WEBROOT:/var/www/certbot:ro
+    - ./nginx/default.locations.template:/etc/nginx/templates/default.locations.template:ro
+volumes:
+  CERTBOT_CERTS:
+  CERTBOT_WEBROOT:

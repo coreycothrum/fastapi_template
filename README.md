@@ -1,6 +1,10 @@
-## initial setup
-## usage
-### start the application
+## Initial Setup
+### Environment Variables
+### SSL Certificates
+follow these [instructions](https://github.com/coreycothrum/nginx_certbot_docker_compose#initial-setup) to setup HTTPS certs
+
+## Usage
+### Start the Application
     docker compose down  && \
     docker compose up       \
         --build             \
@@ -10,13 +14,13 @@
         --wait           &&
     docker compose logs -f
 
-### stop the application
+### Stop the Application
     docker compose down
 
-## contributing
+## Contributing
 how to work in this repo
 
-### use pre-commit
+### Use `pre-commit`
 keep this repo clean, use [pre-commit](https://pre-commit.com/)
 
 1. install [pre-commit](https://pre-commit.com/#1-install-pre-commit)
