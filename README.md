@@ -18,16 +18,20 @@ follow these [instructions](https://github.com/coreycothrum/nginx_certbot_docker
     docker compose down
 
 ## Contributing
-how to work in this repo
+how to work in/with this repo
+
+### Use Conventional Commits
+git commits should adhere to the [conventional commits spec](https://www.conventionalcommits.org/).
 
 ### Use `pre-commit`
-keep this repo clean, use [pre-commit](https://pre-commit.com/)
+keep the repo clean, use [pre-commit](https://pre-commit.com/)
 
 1. install [pre-commit](https://pre-commit.com/#1-install-pre-commit)
 
 2. apply [pre-commit](https://pre-commit.com/#3-install-the-git-hook-scripts) config to local git hook script(s):
 
         pre-commit install
+        pre-commit install --hook-type commit-msg
 
 3. (optional, as needed) update [pre-commit](https://pre-commit.com/#pre-commit-autoupdate) config to latest:
 
