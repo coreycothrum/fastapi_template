@@ -4,18 +4,32 @@ from app.core.config import settings
 
 app = FastAPI(name=settings.APPLICATION_NAME, version=settings.APPLICATION_VERSION)
 
+################################################################################
+# API_V1
+################################################################################
+api_v1 = FastAPI(
+    name=settings.APPLICATION_NAME,
+    version=settings.API_V1_VERSION,
+    description=settings.APPLICATION_DESCRIPTION,
+    openapi_url=f"{settings.API_V1_PATH}/openapi.json",
+)
 
-@app.get("/")
+
+@api_v1.get("/")
 async def root():
     return {"message": "Hello World"}
 
 
+app.mount(f"{settings.API_V1_PATH}", api_v1)
+
+################################################################################
+################################################################################
+################################################################################
 if __name__ == "__main__":
-    import os
     import uvicorn
 
     uvicorn.run(
         app,
-        host=os.getenv("UVICORN_HOST", "0.0.0.0"),
-        port=int(os.getenv("UVICORN_PORT", 8000)),
+        host=settings.UVICORN_HOST,
+        port=settings.UVICORN_PORT,
     )
