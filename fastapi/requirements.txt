@@ -1,3 +1,5 @@
 fastapi==0.89.1
 pydantic==1.10.4
+#semver>=3,<4
+semver==3.0.0.dev4
 uvicorn==0.20.0

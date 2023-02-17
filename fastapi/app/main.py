@@ -5,14 +5,14 @@ from app.core.config import logger
 
 from app.api.v1.api import api_router as api_v1
 
-app = FastAPI(name=settings.APPLICATION_NAME, version=settings.APPLICATION_VERSION)
+app = FastAPI(name=settings.APPLICATION_NAME, version=str(settings.APPLICATION_VERSION))
 
 ################################################################################
 # API_V1
 ################################################################################
 app_v1 = FastAPI(
     name=settings.APPLICATION_NAME,
-    version=settings.API_V1_VERSION,
+    version=str(settings.API_V1_VERSION),
     description=settings.APPLICATION_DESCRIPTION,
     openapi_url=f"{settings.API_V1_PATH}/openapi.json",
 )
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     uvicorn.run(
         app,
-        host=settings.UVICORN_HOST,
+        host=str(settings.UVICORN_HOST),
         port=settings.UVICORN_PORT,
         log_config=log_config,
     )
