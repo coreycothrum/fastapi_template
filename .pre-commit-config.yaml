@@ -7,6 +7,10 @@ repos:
   rev: 6.0.0
   hooks:
   - id: flake8
+    alias: flake8-fastapi
+    name: flake8 fastapi
+    files: ^fastapi/
+    args: [--config=fastapi/.flake8, fastapi/]
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
   rev: v2.6.0
   hooks:
